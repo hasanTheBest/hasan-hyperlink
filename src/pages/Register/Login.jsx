@@ -1,33 +1,56 @@
+import { useRef } from "react";
+import {
+  useAuthState,
+  useSignInWithEmailAndPassword,
+} from "react-firebase-hooks/auth";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import auth from "../../firebase.init";
+import Loading from "./Loading";
 
 function Login() {
+  const [signInWithEmailAndPassword, userLogin, loadingLogin, errorLogin] =
+    useSignInWithEmailAndPassword(auth);
+
   let navigate = useNavigate();
   let location = useLocation();
-  // let auth = useAuth();
-
   let from = location.state?.from?.pathname || "/";
 
-  function handleSubmit(event) {
+  // Ref
+  const emailRef = useRef("");
+  const passwordRef = useRef("");
+
+  function handleLogin(event) {
     event.preventDefault();
 
-    if (true) {
-      // Send them back to the page they tried to visit when they were
-      // redirected to the login page. Use { replace: true } so we don't create
-      // another entry in the history stack for the login page.  This means that
-      // when they get to the protected page and click the back button, they
-      // won't end up back on the login page, which is also really nice for the
-      // user experience.
-      navigate(from, { replace: true });
+    const [email, password] = [
+      emailRef.current.value,
+      passwordRef.current.value,
+    ];
+
+    if (!emailRef) {
+      emailRef.current.focus();
+      return;
     }
+
+    if (!passwordRef) {
+      passwordRef.current.focus();
+      return;
+    }
+
+    signInWithEmailAndPassword(email, password);
+  }
+
+  if (userLogin) {
+    navigate(from, { replace: true });
   }
 
   return (
-    <section className="h-screen bg-emerald-50 py-12">
+    <section className="min-h-screen bg-emerald-50 py-12">
       <div className="bg-white rounded-lg shadow-lg p-6 border-emerald-800 max-w-xl mx-auto">
         <h2 className="text-3xl text-center font-semibold text-emerald-800 mb-8">
           Login
         </h2>
-        <form className="font-medium mb-4" onSubmit={handleSubmit}>
+        <form className="font-medium mb-4" onSubmit={handleLogin}>
           {/* Email */}
           <div className="mb-4 flex flex-col">
             <label htmlFor="email" className="mb-2 text-gray-600">
@@ -36,8 +59,9 @@ function Login() {
             <input
               type="email"
               className="py-2 px-4 border shadow rounded text-emerald-700"
-              required
               placeholder="Email Address"
+              ref={emailRef}
+              required
             />
           </div>
           {/* Password */}
@@ -48,16 +72,22 @@ function Login() {
             <input
               type="password"
               className="py-2 px-4 border shadow rounded text-emerald-700"
-              required
               placeholder="Enter Password"
+              ref={passwordRef}
+              required
             />
           </div>
 
+          {/* Error */}
+          {errorLogin && (
+            <p className="text-rose-700 mb-2">{errorLogin.message}</p>
+          )}
           <button
             type="submit"
-            className="px-4 py-2 font-semibold w-full bg-emerald-800 hover:bg-emerald-700 border-0 text-emerald-100 hover:text-emerald-50 transition-all rounded mt-2"
+            className="px-4 py-2 font-semibold flex justify-center gap-3 w-full bg-emerald-800 hover:bg-emerald-700 border-0 text-emerald-100 hover:text-emerald-50 transition-all rounded mt-2"
           >
-            Submit
+            {loadingLogin && <Loading />}
+            Login
           </button>
         </form>
 

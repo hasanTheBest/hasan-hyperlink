@@ -1,19 +1,47 @@
 import React, { useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import auth from "../../firebase.init";
+import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
+import Loading from "./Loading";
 
 const Register = () => {
   const emailRef = useRef("");
   const passwordRef = useRef("");
 
+  // router
+  let navigate = useNavigate();
+  let location = useLocation();
+  let from = location.state?.from?.pathname || "/";
+
+  const [createUserWithEmailAndPassword, user, loading, error] =
+    useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
+
   const handleRegister = (e) => {
     e.preventDefault();
+    const [email, password] = [
+      emailRef.current.value,
+      passwordRef.current.value,
+    ];
 
-    console.log(emailRef.current.value);
-    console.log(passwordRef.current.value);
+    if (!emailRef) {
+      emailRef.current.focus();
+      return;
+    }
+
+    if (!passwordRef) {
+      passwordRef.current.focus();
+      return;
+    }
+
+    createUserWithEmailAndPassword(email, password);
   };
 
+  if (user) {
+    return navigate(from, { replace: true });
+  }
+
   return (
-    <section className="h-screen bg-emerald-50 py-12">
+    <section className="min-h-screen bg-emerald-50 py-12">
       <div className="bg-white rounded-lg shadow-lg p-6 border-emerald-800 max-w-xl mx-auto">
         <h2 className="text-3xl text-center font-semibold text-emerald-800 mb-8">
           Register
@@ -46,11 +74,14 @@ const Register = () => {
             />
           </div>
 
+          {error && <p className="text-rose-700 mb-2">{error.message}</p>}
+
           <button
             type="submit"
-            className="px-4 py-2 font-semibold w-full bg-emerald-800 hover:bg-emerald-700 border-0 text-emerald-100 hover:text-emerald-50 transition-all rounded mt-2"
+            className="px-4 py-2 font-semibold w-full flex justify-center gap-3 bg-emerald-800 hover:bg-emerald-700 border-0 text-emerald-100 hover:text-emerald-50 transition-all rounded mt-2"
           >
-            Register
+            {loading && <Loading />}
+            <span>Register</span>
           </button>
         </form>
 
