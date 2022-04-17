@@ -1,0 +1,44 @@
+[
+  {
+    "id": "f8fda4f9-ae57-405a-99ac-baaf7669a660",
+    "title": "Javascript: Understanding the weird parts",
+    "price": 84.99,
+    "image": "./images/JavaScript_logo.svg",
+    "description": "An advanced JavaScript course for everyone! Scope, closures, prototypes, 'this', build your own framework, and more."
+  },
+  {
+    "id": "51c22ecb-e707-43c8-9317-5310f3b147fa",
+    "title": "TypeScript for Professionals",
+    "price": 84.99,
+    "image": "./images/Typescript_logo_2020.svg",
+    "description": "Learn all about the TypeScript type system - taught by a Microsoft MVP. Use TypeScript at your day to day job. Use Types for annotating any JavaScript Object"
+  },
+  {
+    "id": "b897594d-9eee-4c78-9a00-1cb2e71dee0a",
+    "title": "React - The Complete Guide (incl Hooks, React Router, Redux)",
+    "price": 44.99,
+    "image": "./images/React-icon.svg",
+    "description": "Dive in and learn React.js from scratch! Learn Reactjs, Hooks, Redux, React Routing, Animations, Next.js and way more!"
+  },
+  {
+    "id": "60eb6eb4-0732-4729-bc8b-cea2430ec7bc",
+    "title": "Angular - The Complete Guide",
+    "price": 35.99,
+    "image": "./images/AngularJS_logo.svg",
+    "description": "Master Angular 13 (formerly 'Angular 2') and build awesome, reactive web apps with the successor of Angular.js"
+  },
+  {
+    "id": "9a97fc60-c1b6-4805-92d5-1d8ed2b0ddcf",
+    "title": "NodeJS - The Complete Guide (MVC, REST APIs, GraphQL, Deno)",
+    "price": 184.99,
+    "image": "./images/Node.js_logo.svg",
+    "description": "Master Node JS & Deno.js, build REST APIs with Node.js, GraphQL APIs, add Authentication, use MongoDB, SQL & much more!"
+  },
+  {
+    "id": "5e83a44e-8b21-4433-9d13-3c3d0f518419",
+    "title": "Angular & NodeJS - The MEAN Stack Guide [2022 Edition]",
+    "price": 29.99,
+    "image": "./images/Meanstack-624x250.jpg",
+    "description": "Build fullstack React.jsLearn how to connect your Angular Frontend to a NodeJS & Express & MongoDB Backend by building a real Application applications with Node.js, Express.js & MongoDB (MERN) with this project-focused course."
+  }
+]
