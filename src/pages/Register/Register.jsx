@@ -1,7 +1,11 @@
 import React, { useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
-import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
+import {
+  useCreateUserWithEmailAndPassword,
+  useSignInWithGithub,
+  useSignInWithGoogle,
+} from "react-firebase-hooks/auth";
 import Loading from "./Loading";
 
 const Register = () => {
@@ -15,6 +19,12 @@ const Register = () => {
 
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
+
+  // Social login
+  const [signInWithGoogle, userGoogle, loadingGoogle, errorGoogle] =
+    useSignInWithGoogle(auth);
+  const [signInWithGithub, userGithub, loadingGithub, errorGithub] =
+    useSignInWithGithub(auth);
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -36,8 +46,15 @@ const Register = () => {
     createUserWithEmailAndPassword(email, password);
   };
 
-  if (user) {
-    return navigate(from, { replace: true });
+  // handle login with google
+  const handleLoginWithGoogle = () => signInWithGoogle();
+
+  // handle login with github
+  const handleLoginWithGithub = () => signInWithGithub();
+
+  // if user exist go to the target page
+  if (user || userGoogle || userGithub) {
+    navigate(from, { replace: true });
   }
 
   return (
@@ -102,12 +119,25 @@ const Register = () => {
         </p>
 
         {/* register button */}
+        {(errorGoogle || errorGithub) && (
+          <p className="mb-2 text-rose-700 font-medium">
+            {errorGoogle?.message || errorGithub?.message}
+          </p>
+        )}
         <div className="flex gap-4 flex-wrap justify-between h-10">
-          <button className="bg-rose-800 hover:bg-red-700 flex-grow text-red-200 hover:text-red-100 transition-all rounded shadow">
-            Google
+          <button
+            className="bg-rose-800 hover:bg-red-700 flex-grow text-red-200 hover:text-red-100 transition-all rounded shadow flex gap-2 justify-center items-center"
+            onClick={handleLoginWithGoogle}
+          >
+            {loadingGoogle && <Loading />}
+            <span>Google</span>
           </button>
-          <button className="bg-sky-800 hover:bg-sky-700 flex-grow text-sky-200 hover:text-sky-100 transition-all rounded shadow">
-            GitHub
+          <button
+            className="bg-sky-800 hover:bg-sky-700 flex-grow text-sky-200 hover:text-sky-100 transition-all rounded shadow flex gap-2 justify-center items-center"
+            onClick={handleLoginWithGithub}
+          >
+            {loadingGithub && <Loading />}
+            <span>GitHub</span>
           </button>
         </div>
       </div>

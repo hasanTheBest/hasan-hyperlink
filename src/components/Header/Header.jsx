@@ -64,11 +64,12 @@ const Header = () => {
                 <img
                   className="w-10 h-10 rounded-full"
                   src={user.photoURL}
-                  alt={user.email}
+                  alt={user?.displayName || user.email}
+                  title={user?.displayName || user.email}
                 />
               ) : (
                 <span className="w-10 h-10 text-xl font-medium text-emerald-100 flex items-center justify-center rounded-full bg-emerald-700">
-                  {user.email.slice(0, 1).toLocaleUpperCase()}
+                  {user.email.slice(0, 1).toUpperCase()}
                 </span>
               )}
             </div>
