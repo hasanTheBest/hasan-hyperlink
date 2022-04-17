@@ -1,15 +1,14 @@
 import { Link, useMatch, useResolvedPath } from "react-router-dom";
 
-function CustomLink({ children, to, ...props }) {
+function CustomLink({ children, className, to, ...props }) {
   let resolved = useResolvedPath(to);
   let match = useMatch({ path: resolved.pathname, end: true });
 
+  // console.log(className);
+  const classes = match ? className.concat(" bg-emerald-700") : className;
+
   return (
-    <Link
-      style={{ textDecoration: match ? "underline" : "none" }}
-      to={to}
-      {...props}
-    >
+    <Link className={classes} to={to} {...props}>
       {children}
     </Link>
   );

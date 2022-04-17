@@ -15,21 +15,44 @@ const Header = () => {
   return (
     <header className="bg-emerald-900 px-4">
       <nav className="max-w-6xl mx-auto shadow flex items-center justify-between">
-        <h4 className="text-slate-200 text-3xl font-semibold tracking-wide">
-          HHH
-        </h4>
+        <Link
+          to="/"
+          className="text-emerald-100 text-2xl font-semibold tracking-wide flex gap-2 items-center bg-emerald-800 p-1 px-3 rounded"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={2}
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+            />
+          </svg>
+          <span>HHH</span>
+        </Link>
 
-        <div className="text-slate-200 flex">
-          <CustomLink to="/" className="py-3 px-5 hover:bg-slate-800">
+        <div className="text-emerald-100 flex font-semibold">
+          <CustomLink to="/" className="py-3 px-5 mr-2 hover:bg-emerald-700">
             Home
           </CustomLink>
-          <CustomLink to="/about" className="py-3 px-5 hover:bg-slate-800">
+          <CustomLink
+            to="/about"
+            className="py-3 px-5 mr-2 hover:bg-emerald-700"
+          >
             About
           </CustomLink>
-          <CustomLink to="/checkout" className="py-3 px-5 hover:bg-slate-800">
+          <CustomLink to="/checkout" className="py-3 px-5 hover:bg-emerald-700">
             Checkout
           </CustomLink>
-          <CustomLink to="/blog" className="py-3 mx-2 hover:bg-slate-800">
+          <CustomLink
+            to="/blog"
+            className="py-3 px-5 mx-2 hover:bg-emerald-700"
+          >
             Blog
           </CustomLink>
         </div>
