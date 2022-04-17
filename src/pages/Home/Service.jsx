@@ -1,6 +1,12 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Service = ({ price, title, image, description, id }) => {
+  const navigate = useNavigate();
+  const handleClickEnroll = (id) => {
+    navigate("/checkout");
+  };
+
   return (
     <div className="shadow-lg relative pb-12 bg-white border-emerald-900">
       <div className="w-full h-[220px] bg-sky-900 mb-8">
@@ -13,7 +19,10 @@ const Service = ({ price, title, image, description, id }) => {
         </h6>
         <p className="mb-6 text-gray-500 font-medium"> {description}</p>
       </div>
-      <button className="px-6 py-3 border-0 shadow absolute bottom-0 w-2/3 bg-emerald-800 hover:bg-emerald-700 transition-all text-emerald-100 left-1/2 -translate-x-1/2">
+      <button
+        className="px-6 py-3 border-0 shadow absolute bottom-0 w-2/3 bg-emerald-800 hover:bg-emerald-700 transition-all text-emerald-100 left-1/2 -translate-x-1/2"
+        onClick={() => handleClickEnroll(id)}
+      >
         Enroll
       </button>
     </div>
