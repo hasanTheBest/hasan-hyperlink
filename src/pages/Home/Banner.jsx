@@ -4,7 +4,7 @@ import bannerImg from "../../../src/images/Programming-amico blue.svg";
 const Banner = () => {
   return (
     <section className="bg-emerald-50 px-4 py-12">
-      <div className="flex items-center justify-center max-w-6xl mx-auto">
+      <div className="flex flex-col-reverse lg:flex-row gap-8 items-center justify-center max-w-6xl mx-auto">
         <div>
           <h1 className="text-6xl mb-12 font-bold text-emerald-700">
             Hasan House of Hyperlink

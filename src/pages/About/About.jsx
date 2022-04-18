@@ -3,7 +3,7 @@ import image from "../../images/mahmud.jpg";
 
 const About = () => {
   return (
-    <section className="py-8 px-4 bg-emerald-50">
+    <section className="py-8 px-4 bg-emerald-50 min-h-[calc(100vh-96px)]">
       <div className="flex flex-col lg:flex-row items-center max-w-6xl mx-auto gap-8">
         <img
           className="w-5/12 h-auto rounded-full"
