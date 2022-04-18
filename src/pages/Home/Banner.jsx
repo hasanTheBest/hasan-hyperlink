@@ -6,7 +6,7 @@ const Banner = () => {
     <section className="bg-emerald-50 px-4 py-12">
       <div className="flex flex-col-reverse lg:flex-row gap-8 items-center justify-center max-w-6xl mx-auto">
         <div>
-          <h1 className="text-6xl mb-12 font-bold text-emerald-700">
+          <h1 className="text-5xl lg:text-6xl mb-12 font-bold text-emerald-700">
             Hasan House of Hyperlink
           </h1>
           <h3 className="text-2xl text-gray-600 mb-3 font-semibold">
